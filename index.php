@@ -78,105 +78,128 @@
             </div>
         </div>
     </div>
-</section>
 
-    <!-- projets section -->
     <section class="section" id="projects">
-        <div class="container text-center">
-            <h6 class="section-title mb-6">Projects</h6>
-            <!-- row -->
-            <div class="row">
-                <div class="col-md-4">
-                    <a href="https://github.com/Isaac955/Mobilites-pendulaires" class="portfolio-card">
-                        <img src="assets/imgs/louis-armand.jpg" class="portfolio-card-img" alt="Lycée Louis Armand">    
-                        <span class="portfolio-card-overlay">
-                            <span class="portfolio-card-caption">
-                                <h4>Python (SQLite3) / JavaScript / HTML / CSS </h5>
-                                <p class="font-weight-normal">Form on Commuting Mobility at the Lycée Louis Armand in Eaubonne...</p>
-                            </span>                         
-                        </span>                     
-                    </a>
+    <div class="container text-center">
+        <h6 class="section-title mb-6">Projects</h6>
+        <!-- row -->
+        <div class="row">
+            <?php
+            // Inclure le fichier de connexion à la base de données
+            include_once("admin/mysqli_connect.php");
+            
+            // Récupérer les projets depuis la base de données
+            $sql = "SELECT * FROM projects";
+            $result = mysqli_query($link, $sql);
+
+            // Vérifier s'il y a des projets à afficher
+            if (mysqli_num_rows($result) > 0) {
+                // Afficher chaque projet
+                while ($row = mysqli_fetch_assoc($result)) {
+            ?>
+            <div class="col-md-4">
+                 <div class="portfolio-card">
+             <a href="<?php echo $row['project_link']; ?>" target="_blank">
+                 <img src="<?php echo $row['project_image']; ?>" class="portfolio-card-img" alt="<?php echo $row['project_langages']; ?>">
+            <div class="portfolio-card-overlay">
+                <div class="portfolio-card-caption">
+                    <!-- Afficher les détails du projet -->
+                    <h4><?php echo $row['project_langages']; ?></h4>
+                    <p class="font-weight-normal"><?php echo $row['project_description']; ?></p>
                 </div>
-                <div class="col-md-4">
-                    <a href="https://sae203mmi.alwaysdata.net/" class="portfolio-card">
-                        <img class="portfolio-card-img" src="assets/imgs/IUT.jpg" class="img-responsive rounded" alt="SAE 203">
-                        <span class="portfolio-card-overlay">
-                            <span class="portfolio-card-caption">
-                                <h4>PHP / SQL / HTML / CSS</h5>
-                                <p class="font-weight-normal">Development of a website for the University of Cergy-Pontoise...</p>
-                            </span>                         
-                        </span>                         
-                    </a>
-                </div>
-                <div class="col-md-4">
-                    <a href="https://isaac955.github.io/CPS-Test/" class="portfolio-card">
-                        <img class="portfolio-card-img" src="assets/imgs/Souris_clic_gauche.svg.png" class="img-responsive rounded" alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, meyawo Landing page">    
-                        <span class="portfolio-card-overlay">
-                            <span class="portfolio-card-caption">
-                                <h4>JavaScript / HTML / CSS</h5>
-                                <p class="font-weight-normal">This program calculates your click speed with your mouse over a given time...</p>
-                            </span>                         
-                        </span>                     
-                    </a>
-                </div>
-                <div class="col-md-4">
-            <a href="https://github.com/Isaac955/Julia" class="portfolio-card">
-            <img class="portfolio-card-img" src="assets/imgs/julia.png" class="img-responsive rounded" alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, meyawo Landing page">    
-            <span class="portfolio-card-overlay">
-                <span class="portfolio-card-caption">
-                <h4>Python (Pillow)</h4>
-                <p class="font-weight-normal">This program generates the Julia set, named after the French mathematician Gaston Julia... </p>
-            </span>                         
-        </span>                     
-    </a>
+            </div>
+        </a>
+    </div>
 </div>
-<div class="col-md-4">
-            <a href="https://github.com/Isaac955/Mandelbrot" class="portfolio-card">
-            <img class="portfolio-card-img" src="assets/imgs/mandelbrot.png" class="img-responsive rounded" alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, meyawo Landing page">    
-            <span class="portfolio-card-overlay">
-                <span class="portfolio-card-caption">
-                <h4>Python (Pillow)</h4>
-                <p class="font-weight-normal">This project involves generating the Mandelbrot set, a famous fractal in mathematics... </p>
-            </span>                         
-        </span>                     
-    </a>
-</div>
-<div class="col-md-4">
-            <a href="https://github.com/Isaac955/Pendu" class="portfolio-card">
-            <img class="portfolio-card-img" src="assets/imgs/pendu-jeu.jpg" class="img-responsive rounded" alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, meyawo Landing page">    
-            <span class="portfolio-card-overlay">
-                <span class="portfolio-card-caption">
-                <h4>Python</h4>
-                <p class="font-weight-normal">This project consists in implementing a simple hangman game... </p>
-            </span>                         
-        </span>                     
-    </a>
-</div>
-        </div><!-- end of container -->
-    </section> <!-- end of portfolio section -->
-    <!-- contact section -->
+
+            <?php 
+                }
+            } else {
+                // Si aucun projet n'est trouvé dans la base de données
+                echo "<p>Aucun projet trouvé.</p>";
+            }
+            ?>
+        </div><!-- end of row -->
+    </div><!-- end of container -->
+</section><!-- end of portfolio section -->
+
+
+<?php
+// Initialisation des variables
+$name = isset($_POST['name']) ? $_POST['name'] : '';
+$email = isset($_POST['email']) ? $_POST['email'] : '';
+$message = isset($_POST['message']) ? $_POST['message'] : '';
+$confirmation_message = '';
+
+// Traitement du formulaire lorsqu'il est soumis
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Récupérer les données du formulaire
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $message = $_POST['message'];
+
+    // Envoyer un e-mail de confirmation
+    $to = $email;
+    $subject = "Confirmation de réception de votre message";
+    $confirm_message = "Bonjour $name,\n\nNous avons bien reçu votre message. Nous vous contacterons sous peu.\n\nCordialement,\n[Votre Nom]";
+    $headers = "From: isaacserhane95@gmail.com";
+
+    // Envoyer l'e-mail de confirmation
+    mail($to, $subject, $confirm_message, $headers);
+
+    // Envoyer le message reçu par e-mail à votre adresse e-mail
+    $to = "isaacserhane95@gmail.com"; // Votre adresse e-mail de réception
+    $subject = "Nouveau message de la part de $name";
+    $email_message = "Nom: $name\n";
+    $email_message .= "E-mail: $email\n";
+    $email_message .= "Message:\n$message";
+    $headers = "From: $email";
+
+    // Envoyer l'e-mail avec le message reçu
+    if (mail($to, $subject, $email_message, $headers)) {
+        // Afficher un message de confirmation
+        $confirmation_message = "Votre message a été envoyé avec succès.";
+    } else {
+        // Afficher un message d'erreur si l'envoi d'e-mail échoue
+        $confirmation_message = "Une erreur s'est produite lors de l'envoi de votre message. Veuillez réessayer.";
+    }
+}
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Contactez-moi</title>
+    <!-- Vos liens CSS et autres ressources ici -->
+</head>
+<body>
     <section class="section" id="contact">
         <div class="container text-center">
-            <h6 class="section-title mb-5">How to contact me ?</h6>
-            <!-- contact form -->
-            <form action="" class="contact-form col-md-10 col-lg-8 m-auto">
+            <h6 class="section-title mb-5">Contact me</h6>
+            <?php if (!empty($confirmation_message)) : ?>
+                <!-- Afficher le message de confirmation -->
+                <div class="alert alert-success"><?php echo $confirmation_message; ?></div>
+            <?php endif; ?>
+            <form action="" class="contact-form col-md-10 col-lg-8 m-auto" method="post">
                 <div class="form-row">
                     <div class="form-group col-sm-6">
-                        <input type="text" size="50" class="form-control" placeholder="Your Name" required>                 
+                        <input type="text" size="50" class="form-control" placeholder="Votre Nom" required name="name" value="<?php echo htmlspecialchars($name); ?>">                 
                     </div>
                     <div class="form-group col-sm-6">
-                        <input type="email" class="form-control" placeholder="Enter Email"requried>                 
+                        <input type="email" class="form-control" placeholder="Entrez votre E-mail" required name="email" value="<?php echo htmlspecialchars($email); ?>">                 
                     </div>
                     <div class="form-group col-sm-12">
-                        <textarea name="comment" id="comment" rows="6"   class="form-control" placeholder="Write Something"></textarea>
+                        <textarea name="message" id="message" rows="6" class="form-control" placeholder="Écrivez quelque chose"><?php echo htmlspecialchars($message); ?></textarea>
                     </div>
                     <div class="form-group col-sm-12 mt-3">
-                        <input type="submit" value="Send Message" class="btn btn-outline-primary rounded">                  
+                        <input type="submit" value="Envoyer le Message" class="btn btn-outline-primary rounded">                  
                     </div>
                 </div>  
-            </form><!-- end of contact form -->
-        </div><!-- end of container -->
-    </section><!-- end of contact section -->
+            </form>
+        </div>
+    </section>
+</body>
+</html>
 
     <!-- footer -->
  <!-- footer -->
