@@ -29,4 +29,7 @@ $('#nav-toggle').click(function(){
     $('ul.nav').toggleClass('show');
 });
 
+window.onload = function() {
+        document.getElementById("contact-form").scrollIntoView();
+    };
 

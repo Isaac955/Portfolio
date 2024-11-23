@@ -6,7 +6,7 @@
     <title>Isaac Serhane Portfolio</title>
     <link rel="stylesheet" href="assets/ressources/themify-icons/css/themify-icons.css">
 	<link rel="stylesheet" href="assets/css/style.css">
-    <link rel="icon" type="isaac-avatar2/png" href="assets/imgs/isaac-avatar2.png">
+    <link rel="icon" type="computer/png" href="assets/imgs/android-chrome-512x512.png">
 </head>
 <body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
 
@@ -67,12 +67,12 @@
                     <p class="section-subtitle">Who Am I ?</p>
                     <h2 class="section-title mb-3">About Me</h2>
                     <p>
-                    Hello, my name is Isaac Serhane, I'm 19 years old and I'm a student in my second Bachelor's degree in web development (BUT MMI) at the IUT of Cergy Pontoise (France).
+                    Hello, my name is Isaac Serhane, I'm 19 years old and I am a third year bachelor's student in web development (BUT MMI) at the IUT of Cergy Pontoise (France).
                     I like front-end and back-end programming, I made websites, games and much more...
                     <br><br>
                     In high school, with the Numerics and Computer Science specialization, I also did several projects in this field, which enabled me to put my knowledge into practice and develop my skills.
                      </p>
-                     <a href="assets/pdf/CV_Isaac_SERHANE_Développeur_web.pdf" class="btn-rounded btn btn-outline-primary mt-4" target="_blank">My resume &#x1f1eb;&#x1f1f7;</a>
+<a href="assets/pdf/CV_Isaac_SERHANE_Développeur_full_stack.pdf" class="btn-rounded btn btn-outline-primary mt-4" download="CV_Isaac_SERHANE_Développeur_full_stack.pdf" target="_blank">My resume &#x1f1eb;&#x1f1f7;</a>
 
                 </div>
             </div>
@@ -141,10 +141,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Envoyer un e-mail de confirmation
     $to = $email;
     $subject = "Confirmation de réception de votre message";
-    $confirm_message = "Bonjour $name,\n\nNous avons bien reçu votre message. Nous vous contacterons sous peu.\n\nCordialement,\n[Votre Nom]";
+    $confirm_message = "Bonjour $name,\n\nJ'ai bien reçu votre message. Je vous contacterai sous peu.\n\nBien cordialement,\nIsaac Serhane";
     $headers = "From: isaacserhane95@gmail.com";
-
-    // Envoyer l'e-mail de confirmation
     mail($to, $subject, $confirm_message, $headers);
 
     // Envoyer le message reçu par e-mail à votre adresse e-mail
@@ -165,6 +163,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html>
@@ -204,11 +203,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <!-- footer -->
  <!-- footer -->
  <?php 
-$socialLinks = array(
-    array('https://github.com/Isaac955', 'ti-github'),
-    array('https://www.linkedin.com/in/isaac-serhane-168375256', 'ti-linkedin'),
-    array('mailto:isaacserhane95@gmail.com', 'ti-email')
-);
+// Inclure le fichier de connexion à la base de données
+include_once("admin/mysqli_connect.php");
+
+// Récupérer les données des réseaux sociaux depuis la base de données
+$sql = "SELECT * FROM social_media";
+$result = mysqli_query($link, $sql);
+
+// Vérifier s'il y a des données à afficher
+if (mysqli_num_rows($result) > 0) {
+    // Stocker les données des réseaux sociaux dans un tableau
+    $socialLinks = array();
+    while ($row = mysqli_fetch_assoc($result)) {
+        $socialLinks[] = array($row['url'], $row['icon_class']);
+    }
+} 
 ?>
 
 <div class="container">
@@ -222,7 +231,6 @@ $socialLinks = array(
         </div>
     </footer>
 </div>
-
 
 
 	
