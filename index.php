@@ -67,12 +67,13 @@
                     <p class="section-subtitle">Who Am I ?</p>
                     <h2 class="section-title mb-3">About Me</h2>
                     <p>
-                    Hello, my name is Isaac Serhane, I'm 19 years old and I am a third year bachelor's student in web development (BUT MMI) at the IUT of Cergy Pontoise (France).
+                    Hello, my name is Isaac Serhane, I'm 22 years old and I recently graduated with a Bachelor's degree in web development (BUT MMI) at the IUT of Cergy Pontoise (France).
                     I like front-end and back-end programming, I made websites, games and much more...
-                    <br><br>
                     In high school, with the Numerics and Computer Science specialization, I also did several projects in this field, which enabled me to put my knowledge into practice and develop my skills.
+                    <br><br>
+                    I am currently looking for a job in web development. I enjoy both front-end and back-end programming, and I have worked on various projects, including websites, games, and other web applications.
                      </p>
-<a href="assets/pdf/CV_Isaac_SERHANE_Développeur_full_stack.pdf" class="btn-rounded btn btn-outline-primary mt-4" download="CV_Isaac_SERHANE_Développeur_full_stack.pdf" target="_blank">My resume &#x1f1eb;&#x1f1f7;</a>
+<a href="assets/pdf/CV_Isaac_SERHANE.pdf" class="btn-rounded btn btn-outline-primary mt-4" download="CV_Isaac_SERHANE_Développeur_full_stack.pdf" target="_blank">My resume &#x1f1eb;&#x1f1f7;</a>
 
                 </div>
             </div>
