@@ -73,7 +73,7 @@
                     <br><br>
                     I am currently looking for a job in web development. I enjoy both front-end and back-end programming, and I have worked on various projects, including websites, games, and other web applications.
                      </p>
-<a href="assets/pdf/CV_Isaac_SERHANE.pdf" class="btn-rounded btn btn-outline-primary mt-4" download="CV_Isaac_SERHANE_Développeur_full_stack.pdf" target="_blank">My resume &#x1f1eb;&#x1f1f7;</a>
+<a href="assets/pdf/Isaac_SERHANE.pdf" class="btn-rounded btn btn-outline-primary mt-4" download="Isaac_SERHANE.pdf" target="_blank">My resume &#x1f1eb;&#x1f1f7;</a>
 
                 </div>
             </div>
